@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <title>KarabakhX</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="wrap navwrap">
+ <div class="logo">
+<img src="assets/images/logo.png" class="brand-logo">
+</div>
+<nav class="nav">
+  <button id="nav-discover" onclick="go('discover')">🧭 Kəşf et</button>
+  <button id="nav-places" onclick="go('places')">🏛 Tarixi yerlər</button>
+  <button id="nav-hotels" onclick="go('hotels')">🏨 Otellər</button>
+  <button id="nav-restaurants" onclick="go('restaurants')">🍽 Restoranlar</button>
+  <button id="nav-services" onclick="go('services')">🛠 Xidmətlər</button>
+  <button id="nav-tours" onclick="go('tours')">🗺 Turlar</button>
+  <button id="nav-earn" onclick="go('earn')">✦ KC Qazan</button>
+</nav>
+    <div class="actions">
+      <button class="btn-ghost" onclick="go('profile')" id="accountBtn">👤Hesabım</button>
+      <a class="btn-primary" href="admin.html">Admin ↗</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME / HERO -->
+<section id="home" class="page active">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-pattern"></div>
+    <div class="wrap hero-content">
+      <div>
+        <div class="hero-eyebrow">Qarabağ üçün rəqəmsal platforma</div>
+        <h1>Otellər, restoranlar,<br>turlar — <em>bir yerdə</em></h1>
+        <p>KarabakhX turistlər və yerli sakinlər üçün Qarabağın tam xidmət ekosistemini birləşdirən SuperApp platformasıdır. Şəhər seç, kəşf et, qazanmağa başla.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="go('discover')">Kəşfə başla →</button>
+          <button class="btn-secondary" onclick="go('earn')">✦ KC Qazan</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item"><b>11</b><span>Şəhər</span></div>
+          <div class="stat-item"><b>2%</b><span>Otel cashback</span></div>
+          <div class="stat-item"><b>0.01</b><span>Heşteq bonus KC</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="hero-card">
+          <div class="hero-card-title">Şəhər seç, kəşf et</div>
+          <div class="search-group">
+            <label>Şəhər</label>
+            <select id="homeCity" onchange="">
+              <option value="">Bütün şəhərlər</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <label>Kateqoriya</label>
+            <select id="homeCat">
+              <option value="">Hamısı</option>
+              <option value="hotels">Otellər</option>
+              <option value="restaurants">Restoranlar</option>
+              <option value="services">Xidmətlər</option>
+              <option value="tours">Turlar</option>
+              <option value="places">Tarixi yerlər</option>
+            </select>
+          </div>
+          <button class="btn-primary" onclick="searchAndGo()">Nəticələrə bax →</button>
+          <div class="cashback-chips">
+            <span class="chip">✦ Otel: 2% KC</span>
+            <span class="chip">✦ Restoran: 1.5% KC</span>
+            <span class="chip">✦ Xidmət: 0.5% KC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMOTIONS BANNER -->
+    <div id="promotionsBanner" class="promotions-section"></div>
+  </div>
+
+  <!-- Feature strip -->
+  <div class="wrap">
+    <div class="feature-strip">
+      <div class="feature-item">
+        <div class="feature-icon">🏔</div>
+        <div><strong>Tarixi məkanlar</strong><span>11 şəhər, yüzlərlə yer</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">💳</div>
+        <div><strong>KC Cashback sistemi</strong><span>Hər xərclədikdə qazan</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📱</div>
+      <div><strong>Heşteq ilə qazanc</strong><span>#KarabakhX → 0.01 KC</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🤝</div>
+        <div><strong>Partnyor şəbəkəsi</strong><span>Otellər, kafe, xidmətlər</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCOVER -->
+<section id="discover" class="page section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Kəşf et</div>
+      <h2>Şəhəri seç, kəşfə başla</h2>
+      <p>Tarixi məkanlar, otellər, restoranlar və xidmətlər — şəhərə görə filtrele.</p>
+    </div>
+    <div class="city-tabs" id="discoverTabs"></div>
+    <div class="grid3" id="discoverGrid"></div>
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section id="hotels" class="page section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Otellər</div>
+      <h2>Rahat qalma, <em style="color:var(--gold);font-style:normal">KC qazan</em></h2>
+      <p>Otelə daxil ol — otaq qiymətləri, əlaqə nömrəsi, cashback şərtinə bax.</p>
+    </div>
+    <div class="city-tabs" id="hotelTabs"></div>
+    <div class="grid3" id="hotelGrid"></div>
+  </div>
+</section>
+
+<!-- RESTAURANTS -->
+<section id="restaurants" class="page section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Restoranlar</div>
+      <h2>Milli dadlar, <em style="color:var(--gold);font-style:normal">ən yaxşı yerlər</em></h2>
+      <p>Menyunu gör, rezervasiya et, cashback qazan.</p>
+    </div>
+    <div class="city-tabs" id="restTabs"></div>
+    <div class="grid3" id="restGrid"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="page section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Xidmətlər</div>
+      <h2>Yerli xidmətlər</h2>
+      <p>Taksi, bələdçi, təmir, təmizlik, kargo — hamısı bir yerdə.</p>
+    </div>
+    <div class="city-tabs" id="servTabs"></div>
+    <div class="grid3" id="servGrid"></div>
+  </div>
+</section>
+
+<!-- TOURS -->
+<section id="tours" class="page section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Turlar</div>
+      <h2>Qarabağı kəşf et, <em style="color:var(--gold);font-style:normal">KC qazan</em></h2>
+      <p>Bələdçili tarixi turlar, ekoturlar, fototurlar — hər zövqə uyğun proqramlar.</p>
+    </div>
+    <div class="city-tabs" id="tourTabs"></div>
+    <div class="grid3" id="tourGrid"></div>
+  </div>
+</section>
+<!-- PLACES -->
+<section id="places" class="page section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Tarixi yerlər</div>
+      <h2>Qarabağın tarixi məkanları</h2>
+      <p>Şuşa, Ağdam, Cəbrayıl və digər şəhərlərdə yerləşən tarixi və turizm məkanlarını kəşf et.</p>
+    </div>
+
+    <div class="city-tabs" id="placeTabs"></div>
+    <div class="grid3" id="placeGrid"></div>
+  </div>
+</section>
+
+<!-- EARN -->
+<section id="earn" class="page">
+  <div class="earn-section">
+    <div class="earn-bg"></div>
+    <div class="wrap earn-grid">
+      <div>
+        <div class="section-eyebrow">KC Sistemi</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);letter-spacing:-1px;margin-bottom:16px">Paylaş, <span style="color:var(--gold)">qazan</span>, xərclə</h2>
+        <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:480px;margin-bottom:8px">
+          KarabakhX Coin (KC) — partnyorlarımızda pul kimi xərcləyə biləcəyin rəqəmsal mükafat sistemi. 
+          Qarabağda çəkdiyiniz şəkili #KarabakhX heşteqi ilə paylaşın — KC balansınıza əlavə olunur.
+        </p>
+        <div class="earn-steps">
+          <div class="earn-step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <strong>Hesab yarat</strong>
+              <span>Fərdi və ya müəssisə olaraq qeydiyyatdan keç</span>
+            </div>
+          </div>
+          <div class="earn-step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <strong>Qarabağda şəkil çək</strong>
+              <span>Tarixi yer, otel, restoran — istənilən məkan</span>
+            </div>
+          </div>
+          <div class="earn-step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <strong>#KarabakhX heşteqi ilə paylaş</strong>
+              <span>Hər paylaşım = 0.01 KC balansına düşür</span>
+            </div>
+          </div>
+          <div class="earn-step">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <strong>Partnyorlarımızda xərclə</strong>
+              <span>Otel, restoran, xidmət — KC ekvivalent puldur</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="earn-card">
+          <div class="coin-display">
+            <div class="coin-icon">✦</div>
+            <div class="coin-value" id="earnBalance">0.00</div>
+            <div class="coin-label">KC balansın</div>
+          </div>
+          <p style="color:var(--muted);font-size:14px;text-align:center;margin-bottom:20px">
+            Şəkil yüklə, <strong style="color:var(--cream)">#KarabakhX</strong> heşteqi ilə mətn yaz, KC qazanmağa başla.
+          </p>
+          <div class="form-field">
+            <label>Paylaşım mətni</label>
+            <textarea id="earnCaption" placeholder="Şuşanın füsunkar mənzərəsindən... #KarabakhX" rows="3"></textarea>
+          </div>
+          <div class="upload-area" id="uploadArea" onclick="document.getElementById('earnFile').click()">
+            <div style="font-size:28px;margin-bottom:8px">📷</div>
+            <div style="font-weight:700;margin-bottom:4px">Şəkil seç</div>
+            <div style="font-size:12px;color:var(--muted)">JPG, PNG — klikləyin</div>
+            <input type="file" id="earnFile" accept="image/*" style="display:none" onchange="fileSelected(this)">
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px;padding:16px" onclick="doEarn()">✦ Paylaş və KC Qazan</button>
+          <div id="earnMsg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+  <div class="wrap" id="profileWrap"></div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <a class="brand" onclick="go('home')" style="margin-bottom:12px;display:inline-flex">
+            <span class="brand-mark">KX</span>
+            <span>KarabakhX</span>
+          </a>
+        </div>
+        <p class="footer-desc">Qarabağın rəqəmsal xidmət ekosistemi. Turistlər və yerli sakinlər üçün vahid platforma.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platforma</h4>
+        <a onclick="go('discover')">Kəşf et</a>
+        <a onclick="go('hotels')">Otellər</a>
+        <a onclick="go('restaurants')">Restoranlar</a>
+        <a onclick="go('services')">Xidmətlər</a>
+        <a onclick="go('tours')">Turlar</a>
+      </div>
+      <div class="footer-col">
+        <h4>Hesab</h4>
+        <a onclick="go('earn')">KC Qazan</a>
+        <a onclick="go('profile')">Profilim</a>
+        <a href="admin.html">Admin panel</a>
+      </div>
+      <div class="footer-col">
+        <h4>Əlaqə</h4>
+        <p>+994 00 000 00 00</p>
+        <p>info@karabakhx.az</p>
+        <p>Şuşa, Azərbaycan</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KarabakhX. Bütün hüquqlar qorunur.</span>
+      <span style="color:var(--gold)">✦ Qarabağın inkişafı üçün</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

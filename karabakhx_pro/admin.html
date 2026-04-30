@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KarabakhX | Admin Panel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+<section id="adminLogin" class="admin-login">
+  <div class="admin-login-card">
+    <a class="brand">
+      <span class="brand-mark">KX</span>
+      <span>KarabakhX Admin</span>
+    </a>
+
+    <h1>Admin giriş</h1>
+    <p>Platforma məlumatlarını idarə etmək üçün daxil olun.</p>
+
+    <div class="form-field">
+      <label>İstifadəçi adı</label>
+      <input id="adminUsername" type="text" placeholder="admin" />
+    </div>
+
+    <div class="form-field">
+      <label>Parol</label>
+      <input id="adminPassword" type="password" placeholder="admin123" />
+    </div>
+
+    <button class="btn-primary admin-full-btn" id="adminLoginBtn">Daxil ol</button>
+
+    <div class="admin-note">
+      Demo giriş: <b>admin</b> / <b>admin123</b>
+    </div>
+
+    <div id="adminLoginError" class="error-msg"></div>
+  </div>
+</section>
+
+<section id="adminPanel" class="admin-layout" style="display:none;">
+
+  <aside class="admin-sidebar">
+    <a class="brand">
+      <span class="brand-mark">KX</span>
+      <span>Admin Panel</span>
+    </a>
+
+    <div class="admin-menu">
+      <button class="active" data-tab="dashboard">Dashboard</button>
+      <button data-tab="hotels">🏨Otellər</button>
+      <button data-tab="restaurants">🍽Restoranlar</button>
+      <button data-tab="services">🛠Xidmətlər</button>
+      <button data-tab="tours">🗺Turlar</button>
+      <button data-tab="partners">Partnyorlar</button>
+      <button data-tab="campaigns">Heşteq kampaniyaları</button>
+      <button data-tab="promotions">Ana səhifə elanları</button>
+      <button data-tab="users">İstifadəçilər</button>
+      <button id="backToSite">Sayta qayıt</button>
+    </div>
+  </aside>
+
+  <main class="admin-content">
+    <div class="admin-header">
+      <div>
+        <h1 id="adminPageTitle">Dashboard</h1>
+        <p>KarabakhX platformasının vizual idarəetmə paneli</p>
+      </div>
+
+      <button class="btn-secondary" id="adminLogoutBtn">Çıxış</button>
+    </div>
+
+    <div id="adminMain"></div>
+  </main>
+
+</section>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>
